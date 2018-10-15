@@ -27,8 +27,9 @@ public class Client {
 			socket = new Socket("localhost", 8000);
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
-			out.writeBytes(playerName);
+			out.writeBytes(playerName+"\n");
 			System.out.println("Greetings " + playerName + ", you have successfully joined the server." );
+			while(true) {}
 		}catch(IOException ex) {
 			System.out.println("Unable to connect to server.");
 		}
