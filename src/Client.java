@@ -27,7 +27,8 @@ public class Client {
 			socket = new Socket("localhost", 8000);
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
-			out.writeChars(playerName);
+			out.writeBytes(playerName);
+		
 		}catch(IOException ex) {
 			System.out.println("Unable to connect to server.");
 		}
