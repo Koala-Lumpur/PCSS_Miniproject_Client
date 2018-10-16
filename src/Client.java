@@ -2,13 +2,20 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class Client {
+public class Client implements Runnable {
 	
 	static String playerName;
 	static Scanner input = new Scanner(System.in);
 	static Socket socket;
 	static DataInputStream in;
 	static DataOutputStream out;
+	public String threadName;
+	public Thread t;
+	
+	//Constructor
+	Client(String name){
+		threadName = name;
+	}
 	
 	//Method for starting the Client
 	public static void startClient() {
@@ -21,14 +28,14 @@ public class Client {
 			}
 		}
 		
-		
 		//Joining the server and sending the player name
 		try {
 			socket = new Socket("localhost", 8000);
 			in = new DataInputStream(socket.getInputStream());
 			out = new DataOutputStream(socket.getOutputStream());
+			Client clientThread = new Client("clientThread");
+			clientThread.start();
 			out.writeBytes(playerName+"\n");
-			System.out.println("Greetings " + playerName + ", you have successfully joined the server." );
 			while(true) {}
 		}catch(IOException ex) {
 			System.out.println("Unable to connect to server.");
@@ -40,7 +47,27 @@ public class Client {
 		return (s == null) || (s.trim().length() == 0);
 	}
 
+	//Main method
 	public static void main(String[] args) {
 		startClient();
+	}
+	
+	//Start method for the threads
+	public void start() {
+		if( t== null) {
+			t = new Thread(this, threadName);
+			t.start();
+		}
+	}
+	
+	//Run method for the threads
+	public void run() {
+		try {
+			while(true) {
+				System.out.println(in.readLine());
+			}
+		} catch (IOException e) {
+			System.out.println("ERROR");
+		}
 	}
 }
