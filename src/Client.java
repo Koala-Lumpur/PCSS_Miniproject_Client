@@ -11,6 +11,7 @@ public class Client implements Runnable {
 	static DataOutputStream out;
 	public String threadName;
 	public Thread t;
+	static Player player;
 	
 	//Constructor
 	Client(String name){
@@ -19,13 +20,17 @@ public class Client implements Runnable {
 	
 	//Method for starting the Client
 	public static void startClient() {
+		System.out.println("Welcome to -ENTER GAME NAME HERE -");
 		//Entering player name
 		while(isBlank(playerName)) {
-			System.out.print("Enter player name: ");
+			System.out.print("Please enter player name: ");
 			playerName = input.nextLine();
+			player = new Player(playerName);
 			if(isBlank(playerName)) {
 				System.out.println("Invalid name");
 			}
+			//Player.Choice playerChoice = player.getChoice();
+			//System.out.println(playerName + " has chosen the " + playerChoice + " class.");
 		}
 		
 		//Joining the server and sending the player name
@@ -35,7 +40,10 @@ public class Client implements Runnable {
 			out = new DataOutputStream(socket.getOutputStream());
 			Client clientThread = new Client("clientThread");
 			clientThread.start();
+			Player.Choice playerChoice = player.getChoice();
+			System.out.println("You have chosen the " + playerChoice + " class.");
 			out.writeBytes(playerName+"\n");
+			out.writeBytes(playerChoice+"\n");
 			while(true) {}
 		}catch(IOException ex) {
 			System.out.println("Unable to connect to server.");
