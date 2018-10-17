@@ -11,10 +11,6 @@ public final class CharacterClass {
 	public static int maxmana;
 	public static int mana;
 	public static int playermeleedmg;
-	public static int xp;
-	public static int enemyhp;
-	public static int enemymeleedmg;
-	public static int Level;
 	public static int Strength;
 	public static int Dexterity;
 	public static int Intelligence;
@@ -25,14 +21,14 @@ public final class CharacterClass {
 	private static void printStats() {
 		if (charclass.equals("mage")) {
 			System.out.println(playerName + "\nhp: " + playerhp + "\nmana: " + mana + "\ndamage: " + playermeleedmg
-					+ "\nxp: " + xp + "\n");
+					+ "\nxp: " + "\n");
 		} else {
-			System.out.println(playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg + "\nxp: " + xp + "\n");
+			System.out.println(playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg + "\nxp: " + "\n");
 		}
 	}
 
 	private static void printEnemyStats() {
-		System.out.println("Enemy " + "\nhp: " + enemyhp + "\ndmg: " + enemymeleedmg + "\n");
+		System.out.println("Enemy " + "\nhp: " + "\ndmg: " + "\n");
 	}
 
 	private static void buildWarrior() {
@@ -46,7 +42,7 @@ public final class CharacterClass {
 		Constitution = 10;
 	}
 
-	private static void buildArcher() {
+	private static void buildRanger() {
 		charclass = "archer";
 		maxhp = 14;
 		playerhp = 14;
