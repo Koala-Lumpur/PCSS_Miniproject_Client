@@ -13,6 +13,7 @@ public class Player {
 	private int maxDamage;
 	private Random random = new Random();
 	private Scanner inputScanner;
+	private boolean team1;
 
 	public Player(String playerName, int maxHitPoints, int minDamage, int maxDamage, int numPoints) {
 		this.playerName = playerName;
@@ -54,6 +55,45 @@ public class Player {
 		}
 		// If the user has not entered a valid input try again.
 		return getChoice();	
+	}
+	
+	public void chooseTeam() {
+		System.out.println("Please select a team (1/2): ");
+		String playerInput = inputScanner.nextLine();
+		switch(playerInput) {
+		case "1":
+			//System.out.println("You have joined team 1.");
+			team1 = true;
+			break;
+		case "2":
+			//System.out.println("You have joined team 2.");
+			team1 = false;
+			break;
+		default:
+			System.out.println("Invalid choice, plaese select 1 or 2. \n");
+			chooseTeam();
+			break;
+		}
+	}
+	
+	public void handleCommand(String s) {
+		//String playerInput = inputScanner.nextLine();
+		switch(s) {
+		case "help":
+			//Show available commands for the client
+			
+		case "switch":
+			System.out.println("You switched teams.");
+			team1 = !team1;
+		}
+	}
+	
+	public String team() {
+		if(team1) {
+			return "team 1";
+		} else {
+			return "team 2";
+		}
 	}
 }
 

@@ -12,6 +12,7 @@ public class Client implements Runnable {
 	public String threadName;
 	public Thread t;
 	static Player player;
+	static boolean teamChosen = false;
 	
 	//Constructor
 	Client(String name){
@@ -34,6 +35,7 @@ public class Client implements Runnable {
 		}
 		
 		//Joining the server and sending the player name
+		//Rasmus hamachi IP - 25.20.154.243
 		try {
 			socket = new Socket("localhost", 8000);
 			in = new DataInputStream(socket.getInputStream());
@@ -44,7 +46,16 @@ public class Client implements Runnable {
 			System.out.println("You have chosen the " + playerChoice + " class.");
 			out.writeBytes(playerName+"\n");
 			out.writeBytes(playerChoice+"\n");
-			while(true) {}
+			while(true) {
+				if(!teamChosen) {
+					player.chooseTeam();
+					String playerTeam = player.team();
+					teamChosen = !teamChosen;
+					out.writeBytes(playerTeam+"\n");
+				} else {
+					player.handleCommand(input.nextLine());
+				}
+			}
 		}catch(IOException ex) {
 			System.out.println("Unable to connect to server.");
 		}
@@ -72,6 +83,7 @@ public class Client implements Runnable {
 	public void run() {
 		try {
 			while(true) {
+				System.out.println("");
 				System.out.println(in.readLine());
 			}
 		} catch (IOException e) {
