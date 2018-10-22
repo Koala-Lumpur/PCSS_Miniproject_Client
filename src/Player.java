@@ -118,11 +118,11 @@ public class Player {
 			} catch (IOException e) {}
 			break;
 		default:
-			System.out.println("Invalid command, type ”help” for a list of commands. \n");
+			System.out.println("Invalid command, type help for a list of commands. \n");
 		}
 	}
-	
-	public void readyCheck() {
+}
+	/*public void readyCheck() {
 		try {
 			Thread.sleep(5);
 		} catch (InterruptedException e) {
@@ -135,7 +135,7 @@ public class Player {
 			team1 = true;
 			break;
 		case "Not ready":
-			team1 = false;
+			team2 = false;
 			break;
 		default:
 			System.out.println("Invalid choice, please try again \n");
