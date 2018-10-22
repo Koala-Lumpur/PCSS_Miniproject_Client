@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
+
 public class Client implements Runnable {
 	
 	static String playerName;
@@ -44,14 +45,32 @@ public class Client implements Runnable {
 			clientThread.start();
 			Player.Choice playerChoice = player.getChoice();
 			System.out.println("You have chosen the " + playerChoice + " class.");
+			//Pariring Character Class to the Enums
+			switch(playerChoice) {
+			case WARRIOR:
+				CharacterClass.buildWarrior();
+				//CharacterClass.printStats();
+				break;
+			case RANGER:
+				CharacterClass.buildRanger();
+				//CharacterClass.printStats();
+				break;
+			case MAGE:
+				CharacterClass.buildMage();
+				//CharacterClass.printStats();
+				break;
+			case ASSASSIN:
+				CharacterClass.buildAssassin();
+				//CharacterClass.printStats();
+				break;
+			}
 			out.writeBytes(playerName+"\n");
 			out.writeBytes(playerChoice+"\n");
 			while(true) {
 				if(!teamChosen) {
 					player.chooseTeam();
-					String playerTeam = player.team();
 					teamChosen = !teamChosen;
-					out.writeBytes(playerTeam+"\n");
+					out.writeBytes(Player.playerTeam+"\n");
 				} else {
 					player.handleCommand(input.nextLine());
 				}

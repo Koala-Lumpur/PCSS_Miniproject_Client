@@ -18,12 +18,12 @@ public final class CharacterClass {
 	public static String charclass;
 	public static boolean fighting = false; // globals for player stats & enemy stats
 
-	private static void printStats() {
+	static void printStats() {
 		if (charclass.equals("mage")) {
-			System.out.println(playerName + "\nhp: " + playerhp + "\nmana: " + mana + "\ndamage: " + playermeleedmg
-					+ "\nxp: " + "\n");
+			System.out.println(Client.playerName + "\nhp: " + playerhp + "\nmana: " + mana + "\ndamage: " + playermeleedmg
+					 + "\n");
 		} else {
-			System.out.println(playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg + "\nxp: " + "\n");
+			System.out.println(Client.playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg + "\n");
 		}
 	}
 
@@ -31,7 +31,7 @@ public final class CharacterClass {
 		System.out.println("Enemy " + "\nhp: " + "\ndmg: " + "\n");
 	}
 
-	private static void buildWarrior() {
+	static void buildWarrior() {
 		charclass = "warrior";
 		maxhp = 20;
 		playerhp = 20;
@@ -42,8 +42,8 @@ public final class CharacterClass {
 		Constitution = 10;
 	}
 
-	private static void buildRanger() {
-		charclass = "archer";
+	static void buildRanger() {
+		charclass = "ranger";
 		maxhp = 14;
 		playerhp = 14;
 		playermeleedmg = 6;
@@ -53,7 +53,7 @@ public final class CharacterClass {
 		Constitution = 8;
 	}
 
-	private static void buildAssassin() {
+	static void buildAssassin() {
 		charclass = "assassin";
 		maxhp = 14;
 		playerhp = 14;
@@ -64,7 +64,7 @@ public final class CharacterClass {
 		Constitution = 8;
 	}
 
-	private static void buildMage() {
+	static void buildMage() {
 		charclass = "mage";
 		maxhp = 10;
 		playerhp = 10;

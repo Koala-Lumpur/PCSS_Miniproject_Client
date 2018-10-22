@@ -12,7 +12,7 @@ public class Player {
 	private int maxDamage;
 	private Random random = new Random();
 	private Scanner inputScanner;
-	private boolean team1;
+	static String playerTeam;
 
 	public Player(String playerName, int maxHitPoints, int minDamage, int maxDamage, int numPoints) {
 		this.playerName = playerName;
@@ -67,11 +67,11 @@ public class Player {
 		switch(playerInput) {
 		case "1":
 			//System.out.println("You have joined team 1.");
-			team1 = true;
+			playerTeam = "Team 1";
 			break;
 		case "2":
 			//System.out.println("You have joined team 2.");
-			team1 = false;
+			playerTeam = "Team 2";
 			break;
 		default:
 			System.out.println("Invalid choice, plaese select 1 or 2. \n");
@@ -87,16 +87,11 @@ public class Player {
 			//Show available commands for the client
 			
 		case "switch":
-			System.out.println("You switched teams.");
-			team1 = !team1;
-		}
-	}
-	
-	public String team() {
-		if(team1) {
-			return "team 1";
-		} else {
-			return "team 2";
+			Client.teamChosen = !Client.teamChosen;
+			break;
+		
+		case "stats":
+			CharacterClass.printStats();
 		}
 	}
 }
