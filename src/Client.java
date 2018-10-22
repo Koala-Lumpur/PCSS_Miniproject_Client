@@ -14,6 +14,7 @@ public class Client implements Runnable {
 	public Thread t;
 	static Player player;
 	static boolean teamChosen = false;
+	static int index;
 	
 	//Constructor
 	Client(String name){
@@ -22,7 +23,7 @@ public class Client implements Runnable {
 	
 	//Method for starting the Client
 	public static void startClient() {
-		System.out.println("Welcome to our game.");
+		System.out.println("Welcome to Dungeons & Mille PVP mode. For a list of commands, type \"help\".");
 		//Entering player name
 		while(isBlank(playerName)) {
 			System.out.print("Please enter player name: ");
@@ -64,19 +65,23 @@ public class Client implements Runnable {
 				//CharacterClass.printStats();
 				break;
 			}
+			//index = in.readInt();
+			System.out.println("ClientNoIndex read.");
 			out.writeBytes(playerName+"\n");
 			out.writeBytes(playerChoice+"\n");
 			while(true) {
 				if(!teamChosen) {
 					player.chooseTeam();
 					teamChosen = !teamChosen;
+					out.writeInt(index);
 					out.writeBytes(Player.playerTeam+"\n");
 				} else {
 					player.handleCommand(input.nextLine());
 				}
 			}
 		}catch(IOException ex) {
-			System.out.println("Unable to connect to server.");
+			System.out.println("Unable to connect to server. "
+					+ "Please make sure that the server is running.");
 		}
 	}
 
@@ -102,11 +107,14 @@ public class Client implements Runnable {
 	public void run() {
 		try {
 			while(true) {
+				if(index == 0) {
+					index = in.readInt();
+				}
 				System.out.println("");
 				System.out.println(in.readLine());
 			}
 		} catch (IOException e) {
-			System.out.println("ERROR");
+			System.out.println("Disconnected from the server.");
 		}
 	}
 }

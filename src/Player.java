@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -84,14 +85,40 @@ public class Player {
 		//String playerInput = inputScanner.nextLine();
 		switch(s) {
 		case "help":
-			//Show available commands for the client
-			
+			System.out.println("help - list of commands \nstats - show character stats"
+					+ "\nready - ready up for starting the game \nshowteam - show joined team");
+			break;
+		//This doesn't work as intended (doesn't send to the server)	
 		case "switch":
 			Client.teamChosen = !Client.teamChosen;
 			break;
 		
+		case "disconnect":
+			try {
+				Client.out.close();
+				Client.in.close();
+		        Client.socket.close();
+			} catch (IOException e1) {}
+			break;
+	    
 		case "stats":
 			CharacterClass.printStats();
+			break;
+		//THIS SHOULD ALSO DISPLAY TEAM MEMBERS
+		case "showteam":
+			System.out.println(playerTeam);
+			break;
+		
+		case "ready":
+			boolean ready = true;
+			System.out.println(Client.playerName + " is ready.");
+			try {
+				Client.out.writeInt(Client.index);
+				Client.out.writeBoolean(ready);
+			} catch (IOException e) {}
+			break;
+		default:
+			System.out.println("Invalid command, type ”help” for a list of commands. \n");
 		}
 	}
 }
