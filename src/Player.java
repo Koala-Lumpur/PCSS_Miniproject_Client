@@ -36,7 +36,7 @@ public class Player {
 	
 	public Choice getChoice() {
 		
-		System.out.println("What class would you like to play? Warrior, Ranger, Mage or Assassin?\n");
+		System.out.print("What class would you like to play " + playerName + "? Warrior, Ranger, Mage or Assassin?");
 		String playerInput = inputScanner.nextLine();
 		playerInput = playerInput.toUpperCase();
 		char firstLetter = playerInput.charAt(0);
@@ -57,6 +57,11 @@ public class Player {
 	}
 	
 	public void chooseTeam() {
+		try {
+			Thread.sleep(5);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		System.out.println("Please select a team (1/2): ");
 		String playerInput = inputScanner.nextLine();
 		switch(playerInput) {

@@ -21,7 +21,7 @@ public class Client implements Runnable {
 	
 	//Method for starting the Client
 	public static void startClient() {
-		System.out.println("Welcome to -ENTER GAME NAME HERE -");
+		System.out.println("Welcome to our game.");
 		//Entering player name
 		while(isBlank(playerName)) {
 			System.out.print("Please enter player name: ");
