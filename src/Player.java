@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class Player {
 	private int maxDamage;
 	private Random random = new Random();
 	private Scanner inputScanner;
-	private boolean team1;
+	static String playerTeam;
 
 	public Player(String playerName, int maxHitPoints, int minDamage, int maxDamage, int numPoints) {
 		this.playerName = playerName;
@@ -67,11 +68,11 @@ public class Player {
 		switch(playerInput) {
 		case "1":
 			//System.out.println("You have joined team 1.");
-			team1 = true;
+			playerTeam = "Team 1";
 			break;
 		case "2":
 			//System.out.println("You have joined team 2.");
-			team1 = false;
+			playerTeam = "Team 2";
 			break;
 		default:
 			System.out.println("Invalid choice, plaese select 1 or 2. \n");
@@ -84,19 +85,62 @@ public class Player {
 		//String playerInput = inputScanner.nextLine();
 		switch(s) {
 		case "help":
-			//Show available commands for the client
-			
+			System.out.println("help - list of commands \nstats - show character stats"
+					+ "\nready - ready up for starting the game \nshowteam - show joined team");
+			break;
+		//This doesn't work as intended (doesn't send to the server)	
 		case "switch":
-			System.out.println("You switched teams.");
-			team1 = !team1;
+			Client.teamChosen = !Client.teamChosen;
+			break;
+		
+		case "disconnect":
+			try {
+				Client.out.close();
+				Client.in.close();
+		        Client.socket.close();
+			} catch (IOException e1) {}
+			break;
+	    
+		case "stats":
+			CharacterClass.printStats();
+			break;
+		//THIS SHOULD ALSO DISPLAY TEAM MEMBERS
+		case "showteam":
+			System.out.println(playerTeam);
+			break;
+		
+		case "ready":
+			boolean ready = true;
+			System.out.println(Client.playerName + " is ready.");
+			try {
+				Client.out.writeInt(Client.index);
+				Client.out.writeBoolean(ready);
+			} catch (IOException e) {}
+			break;
+		default:
+			System.out.println("Invalid command, type ”help” for a list of commands. \n");
 		}
 	}
 	
-	public String team() {
-		if(team1) {
-			return "team 1";
-		} else {
-			return "team 2";
+	public void readyCheck() {
+		try {
+			Thread.sleep(5);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Please state when you are ready to enter combat ");
+		String ready = inputScanner.nextLine();
+		switch(ready) {
+		case "Ready":
+			team1 = true;
+			break;
+		case "Not ready":
+			team1 = false;
+			break;
+		default:
+			System.out.println("Invalid choice, please try again \n");
+			chooseTeam();
+			break;
 		}
 	}
 }
