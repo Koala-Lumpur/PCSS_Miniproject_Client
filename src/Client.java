@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
+
 public class Client implements Runnable {
 	
 	static String playerName;
@@ -13,6 +14,7 @@ public class Client implements Runnable {
 	public Thread t;
 	static Player player;
 	static boolean teamChosen = false;
+	static int index;
 	
 	//Constructor
 	Client(String name){
@@ -21,7 +23,7 @@ public class Client implements Runnable {
 	
 	//Method for starting the Client
 	public static void startClient() {
-		System.out.println("Welcome to our game.");
+		System.out.println("Welcome to Dungeons & Mille PVP mode. For a list of commands, type \"help\".");
 		//Entering player name
 		while(isBlank(playerName)) {
 			System.out.print("Please enter player name: ");
@@ -44,20 +46,42 @@ public class Client implements Runnable {
 			clientThread.start();
 			Player.Choice playerChoice = player.getChoice();
 			System.out.println("You have chosen the " + playerChoice + " class.");
+			//Pariring Character Class to the Enums
+			switch(playerChoice) {
+			case WARRIOR:
+				CharacterClass.buildWarrior();
+				//CharacterClass.printStats();
+				break;
+			case RANGER:
+				CharacterClass.buildRanger();
+				//CharacterClass.printStats();
+				break;
+			case MAGE:
+				CharacterClass.buildMage();
+				//CharacterClass.printStats();
+				break;
+			case ASSASSIN:
+				CharacterClass.buildAssassin();
+				//CharacterClass.printStats();
+				break;
+			}
+			//index = in.readInt();
+			System.out.println("ClientNoIndex read.");
 			out.writeBytes(playerName+"\n");
 			out.writeBytes(playerChoice+"\n");
 			while(true) {
 				if(!teamChosen) {
 					player.chooseTeam();
-					String playerTeam = player.team();
 					teamChosen = !teamChosen;
-					out.writeBytes(playerTeam+"\n");
+					out.writeInt(index);
+					out.writeBytes(Player.playerTeam+"\n");
 				} else {
 					player.handleCommand(input.nextLine());
 				}
 			}
 		}catch(IOException ex) {
-			System.out.println("Unable to connect to server.");
+			System.out.println("Unable to connect to server. "
+					+ "Please make sure that the server is running.");
 		}
 	}
 
@@ -83,11 +107,14 @@ public class Client implements Runnable {
 	public void run() {
 		try {
 			while(true) {
+				if(index == 0) {
+					index = in.readInt();
+				}
 				System.out.println("");
 				System.out.println(in.readLine());
 			}
 		} catch (IOException e) {
-			System.out.println("ERROR");
+			System.out.println("Disconnected from the server.");
 		}
 	}
 }
