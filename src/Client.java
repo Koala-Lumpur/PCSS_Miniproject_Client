@@ -46,7 +46,7 @@ public class Client implements Runnable {
 			clientThread.start();
 			Player.Choice playerChoice = player.getChoice();
 			System.out.println("You have chosen the " + playerChoice + " class.");
-			//Pariring Character Class to the Enums
+			//Pairing Character Class to the Enums
 			switch(playerChoice) {
 			case WARRIOR:
 				CharacterClass.buildWarrior();

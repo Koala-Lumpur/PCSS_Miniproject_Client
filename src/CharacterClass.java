@@ -33,7 +33,7 @@ public final class CharacterClass {
 		System.out.println("Enemy " + "\nhp: " + "\ndmg: " + "\n");
 	}
 
-	private static void buildWarrior() {
+	public static void buildWarrior() {
 		charclass = "warrior";
 		maxhp = 18;
 		playerhp = 18;
@@ -44,7 +44,7 @@ public final class CharacterClass {
 		Constitution = 10;
 	}
 
-	private static void buildRanger() {
+	public static void buildRanger() {
 		charclass = "ranger";
 		maxhp = 14;
 		playerhp = 14;
@@ -56,7 +56,7 @@ public final class CharacterClass {
 		Constitution = 8;
 	}
 
-	private static void buildAssassin() {
+	public static void buildAssassin() {
 		charclass = "assassin";
 		maxhp = 14;
 		playerhp = 14;
@@ -67,10 +67,10 @@ public final class CharacterClass {
 		Constitution = 8;
 	}
 
-	private static void buildMage() {
+	public static void buildMage() {
 		charclass = "mage";
-		maxhp = 10;
-		playerhp = 10;
+		maxhp = 12;
+		playerhp = 12;
 		mana = 20;
 		maxmana = 20;
 		playermeleedmg = 2;
