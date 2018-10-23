@@ -1,4 +1,3 @@
-
 public class Combat {
 
 	public static void main(String[] args) {

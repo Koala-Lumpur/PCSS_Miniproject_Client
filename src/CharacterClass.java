@@ -73,7 +73,7 @@ public final class CharacterClass {
 		playerhp = 12;
 		mana = 20;
 		maxmana = 20;
-		playermeleedmg = 2;
+		playermeleedmg = 2; //if the mage chooses the melee attack, they will regain 6 mana
 		playerfireball = 6; //fireball should cost 8 mana for each use
 		Strength = 5;
 		Dexterity = 5;
