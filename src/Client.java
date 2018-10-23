@@ -15,6 +15,7 @@ public class Client implements Runnable {
 	static Player player;
 	static boolean teamChosen = false;
 	static int index;
+	static boolean clientGameStarted;
 	
 	//Constructor
 	Client(String name){
@@ -66,7 +67,7 @@ public class Client implements Runnable {
 				break;
 			}
 			//index = in.readInt();
-			System.out.println("ClientNoIndex read.");
+			//System.out.println("ClientNoIndex read.");
 			out.writeBytes(playerName+"\n");
 			out.writeBytes(playerChoice+"\n");
 			while(true) {
@@ -94,6 +95,7 @@ public class Client implements Runnable {
 	public static void main(String[] args) {
 		startClient();
 	}
+
 	
 	//Start method for the threads
 	public void start() {
@@ -110,8 +112,15 @@ public class Client implements Runnable {
 				if(index == 0) {
 					index = in.readInt();
 				}
-				System.out.println("");
-				System.out.println(in.readLine());
+				String fromServer = in.readLine();
+				System.out.println("\n" + fromServer);
+				if(fromServer.equals("Game is starting in... 1")) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {}
+					clientGameStarted = true;
+					System.out.println("\nThe game has started.");
+				}
 			}
 		} catch (IOException e) {
 			System.out.println("Disconnected from the server.");

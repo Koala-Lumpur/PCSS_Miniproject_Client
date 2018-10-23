@@ -14,6 +14,7 @@ public class Player {
 	private Random random = new Random();
 	private Scanner inputScanner;
 	static String playerTeam;
+	static boolean ready;
 
 	public Player(String playerName, int maxHitPoints, int minDamage, int maxDamage, int numPoints) {
 		this.playerName = playerName;
@@ -110,8 +111,7 @@ public class Player {
 			break;
 		
 		case "ready":
-			boolean ready = true;
-			System.out.println(Client.playerName + " is ready.");
+			ready = true;
 			try {
 				Client.out.writeInt(Client.index);
 				Client.out.writeBoolean(ready);
