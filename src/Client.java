@@ -70,12 +70,13 @@ public class Client implements Runnable {
 			//System.out.println("ClientNoIndex read.");
 			out.writeBytes(playerName+"\n");
 			out.writeBytes(playerChoice+"\n");
+			out.writeInt(CharacterClass.playerhp);
 			while(true) {
 				if(!teamChosen) {
 					player.chooseTeam();
 					teamChosen = !teamChosen;
 					out.writeInt(index);
-					out.writeBytes(Player.playerTeam+"\n");
+					out.writeBytes(player.getPlayerTeam()+"\n");
 				} else {
 					player.handleCommand(input.nextLine());
 				}
@@ -107,19 +108,41 @@ public class Client implements Runnable {
 	
 	//Run method for the threads
 	public void run() {
+		startGame();
+	}
+	
+	//reads from the server
+	public static void startGame() {
 		try {
 			while(true) {
 				if(index == 0) {
 					index = in.readInt();
 				}
-				String fromServer = in.readLine();
-				System.out.println("\n" + fromServer);
-				if(fromServer.equals("Game is starting in... 1")) {
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {}
-					clientGameStarted = true;
-					System.out.println("\nThe game has started.");
+				if(!clientGameStarted) {
+					String fromServer = in.readLine();
+					System.out.println("\n" + fromServer);
+				
+					if(fromServer.equals("Game is starting in... 1")) {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {}
+						clientGameStarted = true;
+						System.out.println("\nThe game has started.");
+					}
+				}
+				if(clientGameStarted) {
+					for(int i = 0; i < 4; i++) {
+						String otherPlayerName = in.readLine();
+						String otherPlayerClass = in.readLine();
+						String otherPlayerTeam = in.readLine();
+						int otherMaxHealth = in.readInt();
+						Player.player.add(new Player(otherPlayerName, otherPlayerClass, 
+								otherMaxHealth, otherPlayerTeam));
+						System.out.println(Player.player.get(i).getPlayerName());
+						System.out.println(Player.player.get(i).getPlayerClass());
+						System.out.println(Player.player.get(i).getMaxHealth());
+						System.out.println(Player.player.get(i).getPlayerTeam());
+					}
 				}
 			}
 		} catch (IOException e) {

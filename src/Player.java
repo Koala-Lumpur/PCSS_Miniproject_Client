@@ -1,28 +1,28 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
 	
+	public static ArrayList<Player> player = new ArrayList<Player>();
 	private String playerName;
-	private String description;
-	private int maxHitPoints;
-	private int hitPoints;
-	private int numPotions;
+	private String playerClass;
+	private int maxHealth;
+	private int currentHealth;
 	private int minDamage;
 	private int maxDamage;
 	private Random random = new Random();
 	private Scanner inputScanner;
-	static String playerTeam;
+	private String playerTeam;
 	static boolean ready;
-
-	public Player(String playerName, int maxHitPoints, int minDamage, int maxDamage, int numPoints) {
+	
+	public Player(String playerName, String playerClass, int maxHealth, String playerTeam) {
 		this.playerName = playerName;
-		this.maxHitPoints = maxHitPoints;
-		this.minDamage = minDamage;
-		this.maxDamage = maxDamage;
-		this.numPotions = numPotions;
-		this.hitPoints = maxHitPoints;
+		this.playerClass = playerClass;
+		this.maxHealth = maxHealth;
+		currentHealth = maxHealth;
+		this.playerTeam = playerTeam;
 		inputScanner = new Scanner(System.in);
 	}
 	
@@ -30,6 +30,47 @@ public class Player {
 		this.playerName = playerName;
 		inputScanner = new Scanner(System.in);
 	}
+	
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public String getPlayerClass() {
+		return playerClass;
+	}
+
+	public void setPlayerClass(String playerClass) {
+		this.playerClass = playerClass;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
+	public int getCurrentHealth() {
+		return currentHealth;
+	}
+
+	public void setCurrentHealth(int currentHealth) {
+		this.currentHealth = currentHealth;
+	}
+
+	public String getPlayerTeam() {
+		return playerTeam;
+	}
+
+	public void setPlayerTeam(String playerTeam) {
+		this.playerTeam = playerTeam;
+	}
+
 	
 	public enum Choice {
 		WARRIOR, RANGER, MAGE, ASSASSIN;
@@ -69,11 +110,11 @@ public class Player {
 		switch(playerInput) {
 		case "1":
 			//System.out.println("You have joined team 1.");
-			playerTeam = "Team 1";
+			setPlayerTeam("Team 1");
 			break;
 		case "2":
 			//System.out.println("You have joined team 2.");
-			playerTeam = "Team 2";
+			setPlayerTeam("Team 2");
 			break;
 		default:
 			System.out.println("Invalid choice, plaese select 1 or 2. \n");
