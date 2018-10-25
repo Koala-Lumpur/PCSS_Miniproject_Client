@@ -78,11 +78,13 @@ public class Player {
 	
 	
 	public Choice getChoice() {
-		
+		char firstLetter = 'B';
 		System.out.print("What class would you like to play " + playerName + "? Warrior, Ranger, Mage or Assassin?");
 		String playerInput = inputScanner.nextLine();
 		playerInput = playerInput.toUpperCase();
-		char firstLetter = playerInput.charAt(0);
+		try {
+			firstLetter = playerInput.charAt(0);
+		} catch (StringIndexOutOfBoundsException e) {}
 		if (firstLetter == 'W' || firstLetter == 'R' || firstLetter == 'M' || firstLetter == 'A') {
 			switch (firstLetter) {
 			case 'W':
@@ -96,7 +98,8 @@ public class Player {
 			}
 		}
 		// If the user has not entered a valid input try again.
-		return getChoice();	
+		System.out.println("\nInvalid choice, please try again.");
+		return getChoice();
 	}
 	
 	public void chooseTeam() {
