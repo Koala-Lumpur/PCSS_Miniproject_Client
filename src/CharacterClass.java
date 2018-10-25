@@ -8,21 +8,15 @@ public final class CharacterClass {
 	public static String playerName;
 	public static int playerhp;
 	public static int maxhp;
-	public static int maxmana;
-	public static int mana;
 	public static int playermeleedmg;
 	public static int playerrangedmg;
 	public static int playerfireball;
-	public static int Strength;
-	public static int Dexterity;
-	public static int Intelligence;
-	public static int Constitution;
 	public static String charclass;
 	public static boolean fighting = false; // globals for player stats & enemy stats
 
 	static void printStats() {
 		if (charclass.equals("mage")) {
-			System.out.println(Client.playerName + "\nhp: " + playerhp + "\nmana: " + mana + "\ndamage: " + playermeleedmg
+			System.out.println(Client.playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg
 					 + "\n");
 		} else {
 			System.out.println(Client.playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg + "\n");
@@ -38,10 +32,6 @@ public final class CharacterClass {
 		maxhp = 18;
 		playerhp = 18;
 		playermeleedmg = 4;
-		Strength = 10;
-		Dexterity = 5;
-		Intelligence = 5;
-		Constitution = 10;
 	}
 
 	public static void buildRanger() {
@@ -50,10 +40,6 @@ public final class CharacterClass {
 		playerhp = 14;
 		playermeleedmg = 2;
 		playerrangedmg = 4;
-		Strength = 6;
-		Dexterity = 10;
-		Intelligence = 6;
-		Constitution = 8;
 	}
 
 	public static void buildAssassin() {
@@ -61,24 +47,14 @@ public final class CharacterClass {
 		maxhp = 14;
 		playerhp = 14;
 		playermeleedmg = 4;
-		Strength = 8;
-		Dexterity = 10;
-		Intelligence = 6;
-		Constitution = 8;
 	}
 
 	public static void buildMage() {
 		charclass = "mage";
 		maxhp = 12;
 		playerhp = 12;
-		mana = 20;
-		maxmana = 20;
 		playermeleedmg = 2; //if the mage chooses the melee attack, they will regain 6 mana
 		playerfireball = 6; //fireball should cost 8 mana for each use
-		Strength = 5;
-		Dexterity = 5;
-		Intelligence = 10;
-		Constitution = 10;
 	}
 
 }
