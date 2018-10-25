@@ -16,6 +16,7 @@ public class Client implements Runnable {
 	static boolean teamChosen = false;
 	static int index;
 	static boolean clientGameStarted;
+	static boolean playerInfoReceived;
 
 	//Constructor
 	Client(String name){
@@ -24,6 +25,7 @@ public class Client implements Runnable {
 	
 	//Method for starting the Client
 	public static void startClient() {
+		//System.out.println(Combat.mageAttack2());
 		System.out.println("Welcome to Dungeons & Mille PVP mode. For a list of commands, type \"help\".");
 		//Entering player name
 		while(isBlank(playerName)) {
@@ -77,7 +79,7 @@ public class Client implements Runnable {
 					teamChosen = !teamChosen;
 					out.writeInt(index);
 					out.writeBytes(player.getPlayerTeam()+"\n");
-				} else {
+				} else if (!Player.ready) {
 					player.handleCommand(input.nextLine());
 				}
 			}
@@ -131,18 +133,22 @@ public class Client implements Runnable {
 					}
 				}
 				if(clientGameStarted) {
-					for(int i = 0; i < 4; i++) {
-						String otherPlayerName = in.readLine();
-						String otherPlayerClass = in.readLine();
-						String otherPlayerTeam = in.readLine();
-						int otherMaxHealth = in.readInt();
-						Player.player.add(new Player(otherPlayerName, otherPlayerClass, 
+					if(!playerInfoReceived) {
+						for(int i = 0; i < 4; i++) {
+							String otherPlayerName = in.readLine();
+							String otherPlayerClass = in.readLine();
+							String otherPlayerTeam = in.readLine();
+							int otherMaxHealth = in.readInt();
+							Player.player.add(new Player(otherPlayerName, otherPlayerClass, 
 								otherMaxHealth, otherPlayerTeam));
-						System.out.println(Player.player.get(i).getPlayerName());
-						System.out.println(Player.player.get(i).getPlayerClass());
-						System.out.println(Player.player.get(i).getMaxHealth());
-						System.out.println(Player.player.get(i).getPlayerTeam());
+							System.out.println(Player.player.get(i).getPlayerName());
+							System.out.println(Player.player.get(i).getPlayerClass());
+							System.out.println(Player.player.get(i).getMaxHealth());
+							System.out.println(Player.player.get(i).getPlayerTeam());
+						}
+						playerInfoReceived = true;
 					}
+					Combat.newTurn();
 				}
 			}
 		} catch (IOException e) {

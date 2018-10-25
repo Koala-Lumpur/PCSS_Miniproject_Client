@@ -13,7 +13,7 @@ public class Player {
 	private int minDamage;
 	private int maxDamage;
 	private Random random = new Random();
-	private Scanner inputScanner;
+	private Scanner inputScanner = new Scanner(System.in);
 	private String playerTeam;
 	static boolean ready;
 	
@@ -23,12 +23,10 @@ public class Player {
 		this.maxHealth = maxHealth;
 		currentHealth = maxHealth;
 		this.playerTeam = playerTeam;
-		inputScanner = new Scanner(System.in);
 	}
 	
 	public Player(String playerName) {
 		this.playerName = playerName;
-		inputScanner = new Scanner(System.in);
 	}
 	
 	public String getPlayerName() {
@@ -128,6 +126,7 @@ public class Player {
 	
 	public void handleCommand(String s) {
 		//String playerInput = inputScanner.nextLine();
+		
 		switch(s) {
 		case "help":
 			System.out.println("help - list of commands \nstats - show character stats"
