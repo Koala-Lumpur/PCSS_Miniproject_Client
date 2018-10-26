@@ -74,7 +74,7 @@ public class Player {
 		WARRIOR, RANGER, MAGE, ASSASSIN;
 	}
 
-
+	//Gives the player a choice between 4 classes with 4 different inputs
 	public Choice getChoice() {
 		char firstLetter = 'B';
 		System.out.print("What class would you like to play " + playerName + "? Warrior, Ranger, Mage or Assassin?");
@@ -99,7 +99,8 @@ public class Player {
 		System.out.println("\nInvalid choice, please try again.");
 		return getChoice();
 	}
-
+	
+	//Gives the player the option to join a team
 	public void chooseTeam() {
 		try {
 			Thread.sleep(5);
@@ -123,7 +124,8 @@ public class Player {
 			break;
 		}
 	}
-
+	
+	//Gives the user a command option such as help or ready
 	public void handleCommand(String s) {
 		//String playerInput = inputScanner.nextLine();
 

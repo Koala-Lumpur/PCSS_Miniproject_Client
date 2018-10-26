@@ -13,7 +13,8 @@ public final class CharacterClass {
 	public static int playerfireball;
 	public static String charclass;
 	public static boolean fighting = false; // globals for player stats & enemy stats
-
+	
+	//printing out a players stats
 	static void printStats() {
 		if (charclass.equals("mage")) {
 			System.out.println(Client.playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg
@@ -22,18 +23,21 @@ public final class CharacterClass {
 			System.out.println(Client.playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg + "\n");
 		}
 	}
-
+	
+	//printing out the enemy stats
 	private static void printEnemyStats() {
 		System.out.println("Enemy " + "\nhp: " + "\ndmg: " + "\n");
 	}
-
+	
+	//building the warrior class
 	public static void buildWarrior() {
 		charclass = "warrior";
 		maxhp = 18;
 		playerhp = 18;
 		playermeleedmg = 4;
 	}
-
+	
+	//building the ranger class
 	public static void buildRanger() {
 		charclass = "ranger";
 		maxhp = 14;
@@ -41,14 +45,16 @@ public final class CharacterClass {
 		playermeleedmg = 2;
 		playerrangedmg = 4;
 	}
-
+	
+	//building the assassin class
 	public static void buildAssassin() {
 		charclass = "assassin";
 		maxhp = 14;
 		playerhp = 14;
 		playermeleedmg = 4;
 	}
-
+	
+	//building the mage class
 	public static void buildMage() {
 		charclass = "mage";
 		maxhp = 12;
