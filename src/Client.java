@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Client implements Runnable {
-	
+
 	static String playerName;
 	static Scanner input = new Scanner(System.in);
 	static Socket socket;
@@ -22,7 +22,7 @@ public class Client implements Runnable {
 	Client(String name){
 		threadName = name;
 	}
-	
+
 	//Method for starting the Client
 	public static void startClient() {
 		//System.out.println(Combat.mageAttack2());
@@ -38,7 +38,7 @@ public class Client implements Runnable {
 			//Player.Choice playerChoice = player.getChoice();
 			//System.out.println(playerName + " has chosen the " + playerChoice + " class.");
 		}
-		
+
 		//Joining the server and sending the player name
 		//Rasmus hamachi IP - 25.20.154.243
 		try {
@@ -99,7 +99,7 @@ public class Client implements Runnable {
 		startClient();
 	}
 
-	
+
 	//Start method for the threads
 	public void start() {
 		if( t== null) {
@@ -107,12 +107,12 @@ public class Client implements Runnable {
 			t.start();
 		}
 	}
-	
+
 	//Run method for the threads
 	public void run() {
 		startGame();
 	}
-	
+
 	//reads from the server
 	public static void startGame() {
 		try {
@@ -123,7 +123,7 @@ public class Client implements Runnable {
 				if(!clientGameStarted) {
 					String fromServer = in.readLine();
 					System.out.println("\n" + fromServer);
-				
+
 					if(fromServer.equals("Game is starting in... 1")) {
 						try {
 							Thread.sleep(1000);
@@ -140,7 +140,7 @@ public class Client implements Runnable {
 							String otherPlayerTeam = in.readLine();
 							int otherMaxHealth = in.readInt();
 							Player.player.add(new Player(otherPlayerName, otherPlayerClass, 
-								otherMaxHealth, otherPlayerTeam));
+									otherMaxHealth, otherPlayerTeam));
 							System.out.println(Player.player.get(i).getPlayerName());
 							System.out.println(Player.player.get(i).getPlayerClass());
 							System.out.println(Player.player.get(i).getMaxHealth());

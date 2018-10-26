@@ -17,7 +17,7 @@ public final class CharacterClass {
 	static void printStats() {
 		if (charclass.equals("mage")) {
 			System.out.println(Client.playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg
-					 + "\n");
+					+ "\n");
 		} else {
 			System.out.println(Client.playerName + "\nhp: " + playerhp + "\ndamage: " + playermeleedmg + "\n");
 		}

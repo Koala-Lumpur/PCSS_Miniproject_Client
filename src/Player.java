@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
-	
+
 	public static ArrayList<Player> player = new ArrayList<Player>();
 	private String playerName;
 	private String playerClass;
@@ -16,7 +16,7 @@ public class Player {
 	private Scanner inputScanner = new Scanner(System.in);
 	private String playerTeam;
 	static boolean ready;
-	
+
 	public Player(String playerName, String playerClass, int maxHealth, String playerTeam) {
 		this.playerName = playerName;
 		this.playerClass = playerClass;
@@ -24,11 +24,11 @@ public class Player {
 		currentHealth = maxHealth;
 		this.playerTeam = playerTeam;
 	}
-	
+
 	public Player(String playerName) {
 		this.playerName = playerName;
 	}
-	
+
 	public String getPlayerName() {
 		return playerName;
 	}
@@ -69,12 +69,12 @@ public class Player {
 		this.playerTeam = playerTeam;
 	}
 
-	
+
 	public enum Choice {
 		WARRIOR, RANGER, MAGE, ASSASSIN;
 	}
-	
-	
+
+
 	public Choice getChoice() {
 		char firstLetter = 'B';
 		System.out.print("What class would you like to play " + playerName + "? Warrior, Ranger, Mage or Assassin?");
@@ -99,7 +99,7 @@ public class Player {
 		System.out.println("\nInvalid choice, please try again.");
 		return getChoice();
 	}
-	
+
 	public void chooseTeam() {
 		try {
 			Thread.sleep(5);
@@ -123,36 +123,36 @@ public class Player {
 			break;
 		}
 	}
-	
+
 	public void handleCommand(String s) {
 		//String playerInput = inputScanner.nextLine();
-		
+
 		switch(s) {
 		case "help":
 			System.out.println("help - list of commands \nstats - show character stats"
 					+ "\nready - ready up for starting the game \nshowteam - show joined team");
 			break;
-		//This doesn't work as intended (doesn't send to the server)	
+			//This doesn't work as intended (doesn't send to the server)	
 		case "switch":
 			Client.teamChosen = !Client.teamChosen;
 			break;
-		
+
 		case "disconnect":
 			try {
 				Client.out.close();
 				Client.in.close();
-		        Client.socket.close();
+				Client.socket.close();
 			} catch (IOException e1) {}
 			break;
-	    
+
 		case "stats":
 			CharacterClass.printStats();
 			break;
-		//THIS SHOULD ALSO DISPLAY TEAM MEMBERS
+			//THIS SHOULD ALSO DISPLAY TEAM MEMBERS
 		case "showteam":
 			System.out.println(playerTeam);
 			break;
-		
+
 		case "ready":
 			ready = true;
 			try {
@@ -165,7 +165,7 @@ public class Player {
 		}
 	}
 }
-	/*public void readyCheck() {
+/*public void readyCheck() {
 		try {
 			Thread.sleep(5);
 		} catch (InterruptedException e) {
@@ -232,9 +232,9 @@ public class Player {
 		return new Player("moshi moshi", 40, 6, 20, 10);
 	}
 }
-*/
+ */
 
-	/*public static void main(String[] args) {
+/*public static void main(String[] args) {
 		String charclass;
         int num = 2;
         while(num > 1){
@@ -269,4 +269,4 @@ public class Player {
 	} 
 
 }
-*/
+ */
