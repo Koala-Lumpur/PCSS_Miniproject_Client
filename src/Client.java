@@ -17,6 +17,7 @@ public class Client implements Runnable {
 	static int index;
 	static boolean clientGameStarted;
 	static boolean playerInfoReceived;
+	static boolean actionTaken;
 
 	//Constructor
 	Client(String name){

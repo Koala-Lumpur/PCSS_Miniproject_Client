@@ -24,6 +24,7 @@ public class Combat {
 		turnNumber++;
 		attack();
 		target();
+		readServerCalculation();
 	}
 
 	public static void attack() {
@@ -47,6 +48,7 @@ public class Combat {
 	}
 
 	public static void target() {
+		System.out.println("Select a target (1-4): ");
 		for (int i = 0; i < 4; i++) {
 			System.out.println(Player.player.get(i).getPlayerName());
 		}
@@ -55,24 +57,40 @@ public class Combat {
 			switch(playerInput) {
 			case "1":
 				if(!playerIsDead(0)) {
-				Client.out.writeInt(0);
-				Client.out.writeInt(damageDealt);
-				System.out.println("You targeted " + Player.player.get(0).getPlayerName() + "!");
+					Client.out.writeInt(0);
+					System.out.println("Index sent ");
+					Client.out.writeInt(damageDealt);
+					System.out.println("damageDealt sent ");
+					Client.out.writeInt(Client.index);
+					Client.out.writeBoolean(true);
+					System.out.println("You targeted " + Player.player.get(0).getPlayerName() + "!");
 				}
 				break;
 			case "2":
 				Client.out.writeInt(1);
+				System.out.println("Index sent ");
 				Client.out.writeInt(damageDealt);
+				System.out.println("damageDealt sent ");
+				Client.out.writeInt(Client.index);
+				Client.out.writeBoolean(true);
 				System.out.println("You targeted " + Player.player.get(1).getPlayerName() + "!");
 				break;
 			case "3":
 				Client.out.writeInt(2);
+				System.out.println("Index sent ");
 				Client.out.writeInt(damageDealt);
+				System.out.println("damageDealt sent ");
+				Client.out.writeInt(Client.index);
+				Client.out.writeBoolean(true);
 				System.out.println("You targeted " + Player.player.get(2).getPlayerName() + "!");
 				break;
 			case "4":
 				Client.out.writeInt(3);
+				System.out.println("Index sent ");
 				Client.out.writeInt(damageDealt);
+				System.out.println("damageDealt sent ");
+				Client.out.writeInt(Client.index);
+				Client.out.writeBoolean(true);
 				System.out.println("You targeted " + Player.player.get(3).getPlayerName() + "!");
 				break;
 			default:
@@ -95,6 +113,19 @@ public class Combat {
 		}
 		
 	}
+	
+	public static void readServerCalculation() {
+		try {
+			for(int i = 0; i < 4; i++) {
+				System.out.println(Client.in.readLine());
+				//int index = (Client.in.readInt());
+				//System.out.println("Index is: " + index);
+				//Player.player.get(index).setCurrentHealth(Client.in.readInt());
+				//System.out.println("New health is: " + Player.player.get(index).getCurrentHealth());
+			}
+		} catch (IOException e) {}
+	}
+
 
 	public static int mageAttack1() {
 
