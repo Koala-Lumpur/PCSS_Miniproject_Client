@@ -24,7 +24,8 @@ public final class CharacterClass {
 		}
 	}
 
-	//printing out the enemy stats
+	//This particular method doesn't do anything yet and uses the wrong types of measurements. Should be 
+	//improved and included, as it could be useful
 	private static void printEnemyStats() {
 		System.out.println("Enemy " + "\nhp: " + "\ndmg: " + "\n");
 	}
@@ -33,38 +34,38 @@ public final class CharacterClass {
 	//These variables did not end up being used
 	//MaxHP was a remnant of the initial idea that players would roll their starting health (using the dice class)
 	
+ 
 	//building the warrior class
-	public static void buildWarrior() {
-		charclass = "warrior";
-		maxhp = 18;
-		playerhp = 18;
-		playermeleedmg = 4;
-	}
+		public static void buildWarrior() {
+			charclass = "warrior";
+			maxhp = 18;
+			playerhp = 18;
+			playermeleedmg = 4;
+		}
 
-	//building the ranger class
-	public static void buildRanger() {
-		charclass = "ranger";
-		maxhp = 14;
-		playerhp = 14;
-		playermeleedmg = 2;
-		playerrangedmg = 4;
-	}
+		//building the ranger class
+		public static void buildRanger() {
+			charclass = "ranger";
+			maxhp = 14;
+			playerhp = 14;
+			playermeleedmg = 2;
+			playerrangedmg = 4;
+		}
 
-	//building the assassin class
-	public static void buildAssassin() {
-		charclass = "assassin";
-		maxhp = 14;
-		playerhp = 14;
-		playermeleedmg = 4;
-	}
+		//building the assassin class
+		public static void buildAssassin() {
+			charclass = "assassin";
+			maxhp = 14;
+			playerhp = 14;
+			playermeleedmg = 4;
+		}
 
-	//building the mage class
-	public static void buildMage() {
-		charclass = "mage";
-		maxhp = 12;
-		playerhp = 12;
-		playermeleedmg = 2; //if the mage chooses the melee attack, they will regain 6 mana
-		playerfireball = 6; //fireball should cost 8 mana for each use
-	}
-
+		//building the mage class
+		public static void buildMage() {
+			charclass = "mage";
+			maxhp = 12;
+			playerhp = 12;
+			playermeleedmg = 2; //if the mage chooses the melee attack, they will regain 6 mana
+			playerfireball = 6; //fireball should cost 8 mana for each use
+		}
 }
