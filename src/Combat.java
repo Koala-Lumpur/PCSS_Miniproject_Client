@@ -19,15 +19,17 @@ public class Combat {
 	boolean actionTaken = false;
 	static int damageDealt;
 
-
+	//The new turn method is intended to be called every time all 4 players have taken their turn. 
+	//The turn number integer was intended to be used for a "cooldown" system, wherein certain attacks were not usable for several rounds.
 	public static void newTurn() {
 		turnNumber++;
 		attack();
 		target();
 		readServerCalculation();
 	}
-	
-	
+
+	//Only two attacks were implemeted here. The invalid choice is a remnant of when only one attack was implemented but has been 
+	//left for testing purposes
 	public static void attack() {
 		System.out.println("Please choose an attack (1) \n");
 		String playerInput = in.nextLine();
@@ -103,7 +105,7 @@ public class Combat {
 			System.out.println("Target can't be sent to server");
 		}
 	}
-	
+
 	//Checks if the player is dead and prints out a message if the player is dead, but does not yet make that player 'untargetable'
 	public static boolean playerIsDead(int i) {
 		if(Player.player.get(i).getCurrentHealth() <= 0) {
@@ -113,9 +115,9 @@ public class Combat {
 		} else {
 			return false;
 		}
-		
+
 	}
-	
+
 	public static void readServerCalculation() {
 		try {
 			for(int i = 0; i < 4; i++) {
@@ -150,7 +152,7 @@ public class Combat {
 		return -4;
 
 	}
-	
+
 
 	public static int mageAttack4() {
 
@@ -232,59 +234,59 @@ public class Combat {
 	//For later implementation here is the list of attack names and descriptions in a print to screen format:
 	//While these did not ultimately end up with being implemented they indicate the intent of some of the decisions made in this class
 	//
-	
-		
-		//static void possibleAttacks() {
-			//if (CharacterClass.charclass.equals("mage")) {
-			//	System.out.println("\tWhich of the following spells would you like to cast?");
-		
-	        //	System.out.println("\t1. Acid Splash: "
-			//			+ "You throw a vial of acid at your opponent, damaging them 2 hp!");
-			//	System.out.println("\t2. Magic Missile: "
-			//			+ "You fling darts of pure magic into the air, damaging your opponent 1-3 hp!");
-			//	System.out.println("\t3. Lightning Bolt: "
-			//			+ "You conjure forth a bolt of lightning, damaging your opponent 4 hp! Cooldown: 2 turns");
-			//	System.out.println("\t4. Cure Wounds: "
-			//			+ "You summon gusts of healing mists, restoring 5 hp to you and your ally! Cooldown 3 turns");
-				
-		    //	} else if (CharacterClass.charclass.equals("warrior")){
-			// System.out.println("\tWhich of the following attacks would you like to use?");
-		    // System.out.println("\t1. Shield Bash: "
-			//			+ "You bash your mighty shield into your opponent, damaging them 2-5 hp!");
-			//	System.out.println("\t2. Cleave: "
-			//			+ "You swing your mighty axe through the air in front of you, damaging your opponent 1-7 hp! Cooldown 2 turns" );
-			//	System.out.println("\t3. Backhand: "
-			//			+ "With a sudden jerk, you backhand an opponent who had gotten a little too close, damaging them 1-6 hp!");
-			//	System.out.println("\t4. Kidneyshot: "
-			//			+ "You gleefully punch your enemy right where it hurts, dealing 3hp in damage!");
-				
-			//  } else if(CharacterClass.charclass.equals("ranger")) {
-			//	System.out.println("\tWhich of the following attacks would you like to use?");
-			//	System.out.println("\t1. Rapid Shot: "
-			//			+ "You fire two arrows at your enemy in rapid succesion, damaging them 4 hp!");
-			//	System.out.println("\t2. Kill Command: "
-			//			+ "You send forth your animal companion to visciously atatck you enemy, damaging them 2-5 hp!" );
-			//	System.out.println("\t3. Fire Arrow: "
-			//			+ "You fire a flaming arrow at your opponent, damaging them 3-7 hp! Cooldown: 3 turns");
-			//	System.out.println("\t4. Multishot: "
-			//			+ "You fire two tilting arrows, damaging BOTH of your opponents 2 hp!");
-				
-			// } else {
-			//	System.out.println();
-			//	System.out.println("\tWhich of the following attacks would you like to use?");
-			//	System.out.println("\t1. Backstab: "
-			//			+ "You leap out of the shadows and stab your opponent in the back, dealing 3hp in damage!");
-			//	System.out.println("\t2. Garrote: "
-			//			+ "You wrap a sharp metal wire around your enemy's throat damaging them 2-5 hp! Cooldown: 1 turn");
-			//	System.out.println("\t3. Death from above: "
-			//			+ "You jump on top of your enemy unleashing a flurry of attacks, dealing 7 hp in damage! Cooldown: 5 turns");
-			//	System.out.println("\t4. Hamstring: "
-			//			+ "You cut your opponent's hamstring, dealing 4 damage! Cooldown 2 turns");
-			//}
-		
-	
 
-	
+
+	//static void possibleAttacks() {
+	//if (CharacterClass.charclass.equals("mage")) {
+	//	System.out.println("\tWhich of the following spells would you like to cast?");
+
+	//	System.out.println("\t1. Acid Splash: "
+	//			+ "You throw a vial of acid at your opponent, damaging them 2 hp!");
+	//	System.out.println("\t2. Magic Missile: "
+	//			+ "You fling darts of pure magic into the air, damaging your opponent 1-3 hp!");
+	//	System.out.println("\t3. Lightning Bolt: "
+	//			+ "You conjure forth a bolt of lightning, damaging your opponent 4 hp! Cooldown: 2 turns");
+	//	System.out.println("\t4. Cure Wounds: "
+	//			+ "You summon gusts of healing mists, restoring 5 hp to you and your ally! Cooldown 3 turns");
+
+	//	} else if (CharacterClass.charclass.equals("warrior")){
+	// System.out.println("\tWhich of the following attacks would you like to use?");
+	// System.out.println("\t1. Shield Bash: "
+	//			+ "You bash your mighty shield into your opponent, damaging them 2-5 hp!");
+	//	System.out.println("\t2. Cleave: "
+	//			+ "You swing your mighty axe through the air in front of you, damaging your opponent 1-7 hp! Cooldown 2 turns" );
+	//	System.out.println("\t3. Backhand: "
+	//			+ "With a sudden jerk, you backhand an opponent who had gotten a little too close, damaging them 1-6 hp!");
+	//	System.out.println("\t4. Kidneyshot: "
+	//			+ "You gleefully punch your enemy right where it hurts, dealing 3hp in damage!");
+
+	//  } else if(CharacterClass.charclass.equals("ranger")) {
+	//	System.out.println("\tWhich of the following attacks would you like to use?");
+	//	System.out.println("\t1. Rapid Shot: "
+	//			+ "You fire two arrows at your enemy in rapid succesion, damaging them 4 hp!");
+	//	System.out.println("\t2. Kill Command: "
+	//			+ "You send forth your animal companion to visciously atatck you enemy, damaging them 2-5 hp!" );
+	//	System.out.println("\t3. Fire Arrow: "
+	//			+ "You fire a flaming arrow at your opponent, damaging them 3-7 hp! Cooldown: 3 turns");
+	//	System.out.println("\t4. Multishot: "
+	//			+ "You fire two tilting arrows, damaging BOTH of your opponents 2 hp!");
+
+	// } else {
+	//	System.out.println();
+	//	System.out.println("\tWhich of the following attacks would you like to use?");
+	//	System.out.println("\t1. Backstab: "
+	//			+ "You leap out of the shadows and stab your opponent in the back, dealing 3hp in damage!");
+	//	System.out.println("\t2. Garrote: "
+	//			+ "You wrap a sharp metal wire around your enemy's throat damaging them 2-5 hp! Cooldown: 1 turn");
+	//	System.out.println("\t3. Death from above: "
+	//			+ "You jump on top of your enemy unleashing a flurry of attacks, dealing 7 hp in damage! Cooldown: 5 turns");
+	//	System.out.println("\t4. Hamstring: "
+	//			+ "You cut your opponent's hamstring, dealing 4 damage! Cooldown 2 turns");
+	//}
+
+
+
+
 
 
 }
