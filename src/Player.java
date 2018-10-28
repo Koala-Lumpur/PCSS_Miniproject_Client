@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
-
+	//The player names are stored in an array list
 	public static ArrayList<Player> player = new ArrayList<Player>();
 	private String playerName;
 	private String playerClass;
@@ -99,7 +99,7 @@ public class Player {
 		System.out.println("\nInvalid choice, please try again.");
 		return getChoice();
 	}
-	
+
 	//Gives the player the option to join a team
 	public void chooseTeam() {
 		try {
@@ -124,10 +124,9 @@ public class Player {
 			break;
 		}
 	}
-	
-	//Gives the user a command option such as help or ready
+
+	//Gives the user the option to make commands such as help or ready
 	public void handleCommand(String s) {
-		//String playerInput = inputScanner.nextLine();
 
 		switch(s) {
 		case "help":
@@ -146,11 +145,15 @@ public class Player {
 				Client.socket.close();
 			} catch (IOException e1) {}
 			break;
+			
+			//Remnant of the point where characters had significant stats such as maxHP, melee damage, ranged damage, etc)
 
 		case "stats":
 			CharacterClass.printStats();
 			break;
-			//THIS SHOULD ALSO DISPLAY TEAM MEMBERS
+			
+			//This should print the players on the 2 teams (Similarly to what happens at the start of each round) 
+			
 		case "showteam":
 			System.out.println(playerTeam);
 			break;
@@ -167,108 +170,3 @@ public class Player {
 		}
 	}
 }
-/*public void readyCheck() {
-		try {
-			Thread.sleep(5);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Please state when you are ready to enter combat ");
-		String ready = inputScanner.nextLine();
-		switch(ready) {
-		case "Ready":
-			team1 = true;
-			break;
-		case "Not ready":
-			team2 = false;
-			break;
-		default:
-			System.out.println("Invalid choice, please try again \n");
-			chooseTeam();
-			break;
-		}
-	}
-}
-
-
-	/*public int attack() {
-		return random.nextInt(maxDamage - minDamage + 1) + minDamage;
-	}
-
-	public void defend(Player player) {
-		int attackStrength = player.attack();
-		hitPoints = (hitPoints > attackStrength) ? hitPoints - attackStrength : 0;
-		System.out.printf("  " + playerName + " is hit for %d HP of damage (%s)\n", attackStrength, getStatus());
-		if (hitPoints == 0) {
-			System.out.println("  " + playerName + " has been defeated");
-		}
-	}
-
-	public void heal() {
-		if (numPotions > 0) {
-			hitPoints = Math.min(maxHitPoints, hitPoints + 10);
-			System.out.printf("  %s drinks healing potion (%s, %d potions left)\n", name, getStatus(), --numPotions);
-		} else {
-			System.out.println("  You've exhausted your potion supply!");
-		}
-	}
-
-	public boolean isAlive() {
-		return hitPoints > 0;
-	}
-
-	public String getStatus() {
-		return "Player HP: " + hitPoints;
-	}
-
-	@Override
-	public String toString() {
-		return playerName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public static Player newInstance() {
-		return new Player("moshi moshi", 40, 6, 20, 10);
-	}
-}
- */
-
-/*public static void main(String[] args) {
-		String charclass;
-        int num = 2;
-        while(num > 1){
-        System.out.println("Enter your Name: ");
-        playerName = scan.nextLine();
-        System.out.println("Choose your class: ");
-        System.out.println("'w' for warrior");
-        System.out.println("'a' for archer");
-        System.out.println("'m' for mage");
-        System.out.println("'s' for assassin");
-        charclass = scan.nextLine();
-        while(charclass.charAt(0) != 'w' && charclass.charAt(0) != 'a' && charclass.charAt(0) != 'm'){
-            System.out.println("'w' for warrior");
-            System.out.println("'a' for archer");
-            System.out.println("'m' for mage");
-            System.out.println("'s' for assassin");
-            charclass = scan.nextLine();
-        }
-        if(charclass.charAt(0) == 'w'){
-            buildWarrior();
-        }
-        if(charclass.charAt(0) == 'a'){
-            buildArcher();
-        }
-        if(charclass.charAt(0) == 'm'){
-            buildMage();
-        }
-        if(charclass.charAt(0)== 's') {
-        	buildAssassin();
-        }
-
-	} 
-
-}
- */
