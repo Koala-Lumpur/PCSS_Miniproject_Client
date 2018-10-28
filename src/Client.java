@@ -3,18 +3,18 @@ import java.net.*;
 import java.util.Scanner;
 
 
-//*********************************************************************************
-//
-//Project 		: Programming of complex software system mini-project
-//
-//Authors 		: Péter Levente Babó, Thevakorn Kjær Lauritsen, Mille Skov Hansen
-//
-//Date created	: 23/10/2018
-//
-//Purpose		: The client for implementing the main features of the game and
-//                sending relevant information to the server 
-//
-//*********************************************************************************
+ //*********************************************************************************
+ //
+ //Project 		: Programming of complex software system mini-project
+ //
+ //Authors 		: Péter Levente Babó, Thevakorn Kjær Lauritsen, Mille Skov Hansen
+ //
+ //Date created	: 23/10/2018
+ //
+ //Purpose		: The client for implementing the main features of the game and
+ //                sending relevant information to the server 
+ //
+ //*********************************************************************************
 
 
 public class Client implements Runnable {
@@ -42,7 +42,7 @@ public class Client implements Runnable {
 	public static void startClient() {
 
 		//System.out.println(Combat.mageAttack2()); 
-		System.out.println("Welcome to Dungeons & Mille PVP mode. For a list of commands, type \"help\".");
+		System.out.println("Welcome to Dungeons & hack-and-slash PVP mode. For a list of commands, type \"help\".");
 		//Entering player name
 
 		while(isBlank(playerName)) {
@@ -70,6 +70,7 @@ public class Client implements Runnable {
 			System.out.println("You have chosen the " + playerChoice + " class.");
 			//Pairing Character Class to the Enums
 			switch(playerChoice) {
+
 			case WARRIOR:
 				CharacterClass.buildWarrior();
 				//CharacterClass.printStats();
@@ -133,7 +134,7 @@ public class Client implements Runnable {
 		startGame();
 	}
 
-	//reads from the server 
+	//reads from the server and starts the game (With corresponding printed message)
 	public static void startGame() {
 		try { 
 			while(true) { 
