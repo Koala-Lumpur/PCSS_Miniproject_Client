@@ -3,6 +3,20 @@ import java.net.*;
 import java.util.Scanner;
 
 
+//*********************************************************************************
+//
+//Project 		: Programming of complex software system mini-project
+//
+//Authors 		: Péter Levente Babó, Thevakorn Kjær Lauritsen, Mille Skov Hansen
+//
+//Date created	: 23/10/2018
+//
+//Purpose		: The client for implementing the main features of the game and
+//                sending relevant information to the server 
+//
+//*********************************************************************************
+
+
 public class Client implements Runnable {
 
 	static String playerName;
@@ -26,16 +40,16 @@ public class Client implements Runnable {
 
 	//Method for starting the Client
 	public static void startClient() {
-		
+
 		//System.out.println(Combat.mageAttack2());
 		System.out.println("Welcome to Dungeons & Mille PVP mode. For a list of commands, type \"help\".");
 		//Entering player name
-		
+
 		while(isBlank(playerName)) {
 			System.out.print("Please enter player name: ");
 			playerName = input.nextLine();
 			player = new Player(playerName);
-			
+
 			if(isBlank(playerName)) {
 				System.out.println("Invalid name");
 			}
@@ -45,7 +59,7 @@ public class Client implements Runnable {
 
 		//Joining the server and sending the player name
 		//Rasmus hamachi IP - 25.20.154.243
-		
+
 		try {
 			socket = new Socket("localhost", 8000);
 			in = new DataInputStream(socket.getInputStream());
@@ -78,7 +92,7 @@ public class Client implements Runnable {
 			out.writeBytes(playerName+"\n");
 			out.writeBytes(playerChoice+"\n");
 			out.writeInt(CharacterClass.playerhp);
-			
+
 			while(true) {
 				if(!teamChosen) {
 					player.chooseTeam();
