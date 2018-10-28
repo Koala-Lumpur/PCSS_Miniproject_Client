@@ -130,9 +130,9 @@ public class Combat {
 		} catch (IOException e) {}
 	}
 
-	//Implementation for 16 different attacks (4 attacks for every class)
-	//Mage attack 4 returns a positive integer as it is supposed to be a healing spell (Not implemented)
-	//Some attacks returned fixed integers, and some return a random; this is because the damage output of the attack was supposed to be within
+	// Implementation for 16 different attacks (4 attacks for every class)
+	// Mage attack 4 returns a positive integer as it is supposed to be a healing spell (Not implemented)
+	// Some attacks returned fixed integers, and some return a random; this is because the damage output of the attack was supposed to be within
 	//a defined range
 
 	public static int mageAttack1() {

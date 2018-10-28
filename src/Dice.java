@@ -1,5 +1,11 @@
 import java.util.Random;
 
+// The dice class never ended up being used
+// The original use of it was to decide initial health pool (A concept that was scrapped) as well as 
+//determining which player would take their turn first (A concept that was also scrapped)
+// Later it was also meant to be used to roll random values for attacks.
+// It has been kept in the program because it was not yet determined which method of rolling 
+//random integers was easier to manage, but it should probably be deleted if it is not established to be of use upon further implementation
 public class Dice {
 	public int roll2() {
 		Random rand = new Random();
