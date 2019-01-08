@@ -7,7 +7,7 @@ import java.util.Scanner;
  //
  //Project 		: Programming of complex software system mini-project
  //
- //Authors 		: Péter Levente Babó, Thevakorn Kjær Lauritsen, Mille Skov Hansen
+ //Authors 		: Pï¿½ter Levente Babï¿½, Thevakorn Kjï¿½r Lauritsen, Mille Skov Hansen
  //
  //Date created	: 23/10/2018
  //
@@ -174,6 +174,7 @@ public class Client implements Runnable {
 			} 
 		} catch (IOException e) {
 			System.out.println("Disconnected from the server.");
+			//TEST
 		} 
 	}
 }
